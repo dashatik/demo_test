@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# Transtar Networks – Clickable Demo for NordLedger Pilot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the clickable product demo of Transtar Networks' compliance-first cloud infrastructure platform. This prototype simulates the infrastructure, compliance, and FinOps experience of a fictional fintech pilot customer, **NordLedger**, during their onboarding to Transtar.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Purpose
 
-## Expanding the ESLint configuration
+This demo was created to:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Showcase Transtar’s **product vision and UI logic**
+- Communicate our value to **regulated fintechs** and **digital identity providers**
+- Support **pilot sales conversations** and **early-stage fundraising**
+- Illustrate our alignment with frameworks like **DORA**, **GDPR**, **NIS2**, and **eIDAS 2.0**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧱 Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The demo includes 6 interactive screens:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+| Screen | Description |
+|--------|-------------|
+| **1. Overview** | System health, audit status, compliance readiness |
+| **2. Infrastructure** | Kubernetes, VPN, observability stack, DR setup |
+| **3. Deployments** | GitOps-based policy enforcement for CI/CD |
+| **4. Audit Logs** | Immutable event history with cryptographic hash |
+| **5. FinOps** | AWS vs Transtar cost comparison and forecasts |
+| **6. Regions** | Sovereign regional controls and DR verification |
+
+Each screen simulates the Transtar platform in a real-world pilot scenario for a mid-stage fintech operating under European regulatory pressure.
+
+---
+
+## 🧑‍💼 About NordLedger
+
+NordLedger is a fictional Danish fintech startup that:
+- Provides B2B accounting + PSD2 payment APIs
+- Operates in a regulated environment
+- Requires GDPR-compliant infra, regional sovereignty, and verifiable audit logging
+
+This narrative grounds our demo in realistic workflows and KPIs.
+
+---
+
+## 🚫 Disclaimer
+
+This demo is **not connected to any backend system** and does **not store or process any real user data**. It is a product prototype designed for storytelling and strategic validation.
+
+---
+
+## 🔗 Contact
+
+Interested in Transtar Networks or exploring a pilot?
+
+→ [Contact Us](https://www.transtarnetworks.com/contact)  
+→ Email: admin@transtarnetworks.com
+
+Built with love by the Transtar founding team.  
+Strategy, product design & narrative by Daria Tikho.  
