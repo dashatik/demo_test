@@ -1,9 +1,8 @@
-
 export default function AuditLogs() {
   return (
-    <div className="w-[1220px] h-[960px] bg-[#F9F9F9] font-[Inter] text-[#000]">
+    <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <div className="h-[80px] bg-white flex justify-between items-center px-[40px]">
+      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
         <h1 className="text-[20px] font-semibold">Audit Logs</h1>
         <div className="flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
@@ -12,52 +11,71 @@ export default function AuditLogs() {
       </div>
 
       {/* Filter Panel */}
-      <div className="mt-[24px] w-[1140px] mx-auto flex justify-between items-center">
+      <div className="w-[1140px] mx-auto flex justify-between items-center mt-[24px] ">
         <p className="text-[14px] font-semibold">Filter Logs:</p>
-        <div className="flex gap-4 items-center">
-          {['All Users', 'All Actions', 'All Severities'].map((placeholder, index) => (
-            <select
-              key={index}
-              className="w-[180px] p-[8px] text-[13px] border border-[#CCCCCC] rounded-[6px]"
-            >
-              <option>{placeholder}</option>
+        <div className="flex gap-[10px] items-center ">
+          {['User ID', 'Action Type', 'Severities', 'Date'].map((label, index) => (
+            <select key={index} className="select">
+              <option>{label}</option>
             </select>
           ))}
-          <button className="bg-[#4CAF50] hover:bg-[#45A045] text-white text-[13px] font-semibold py-[8px] px-[16px] rounded-[6px]">
-            Apply Filters
-          </button>
+          <button className="btn btn-primary">Apply Filters</button>
         </div>
       </div>
 
       {/* Log Viewer */}
-      <div className="mt-[32px] w-[1140px] mx-auto bg-[#FAFAFA] border border-[#E0E0E0] rounded-[8px] p-[24px] overflow-y-scroll h-[420px]">
-        <pre className="text-[13px] font-mono leading-[1.6]">
-<span className="text-[#333]">2025-05-01T09:32:16Z | DEPLOY_START      | user=ctojohan    | source=github</span>
-<span className="text-[#F44336]">2025-05-01T09:32:18Z | POLICY_FAIL       | user=ctojohan    | reason=DR-MISSING</span>
-<span className="text-[#333]">2025-05-01T09:33:44Z | DEPLOY_ABORTED    | user=ctojohan</span>
-<span className="italic text-[#333]">2025-05-02T12:16:11Z | VPN_RESTART       | user=sys         | region=FI</span>
-<span className="text-[#333]">2025-05-02T14:01:55Z | AUDIT_EXPORT      | user=auditor-1   | hash=sha256:…</span>
-        </pre>
+      <div className="w-[1140px] h-[300px] mx-auto bg-[#FAFAFA] border border-[#E0E0E0] rounded-[8px] px-[20px] p-6 font-mono text-[13px] overflow-x-auto">
+        <div className="grid grid-cols-4 gap-4 font-semibold text-[#6E6E6E] pb-[20px] pt-[20px] mb-3">
+          <div>Timestamp</div>
+          <div>Action</div>
+          <div>User</div>
+          <div>Details</div>
+        </div>
+        <div className="grid grid-cols-4 gap-4 py-1 pb-[10px] text-[#333]">
+          <div>2025-05-01T09:32:16Z</div>
+          <div>DEPLOY_START</div>
+          <div>user=ctojohan</div>
+          <div>source=github</div>
+        </div>
+        <div className="grid grid-cols-4 gap-4 py-1 pb-[10px] text-[var(--color-error)]">
+          <div>2025-05-01T09:32:18Z</div>
+          <div>POLICY_FAIL</div>
+          <div>user=ctojohan</div>
+          <div>reason=DR-MISSING</div>
+        </div>
+        <div className="grid grid-cols-4 gap-4 py-1 pb-[10px] text-[#333]">
+          <div>2025-05-01T09:33:44Z</div>
+          <div>DEPLOY_ABORTED</div>
+          <div>user=ctojohan</div>
+          <div>—</div>
+        </div>
+        <div className="grid grid-cols-4 gap-4 py-1 pb-[10px] text-[#555]">
+          <div>2025-05-02T12:16:11Z</div>
+          <div>VPN_RESTART</div>
+          <div>user=sys</div>
+          <div>region=FI</div>
+        </div>
+        <div className="grid grid-cols-4 gap-4 py-1 pb-[10px] text-[#333]">
+          <div>2025-05-02T14:01:55Z</div>
+          <div>AUDIT_EXPORT</div>
+          <div>user=auditor-1</div>
+          <div>hash=sha256:…</div>
+        </div>
       </div>
 
       {/* Footer Panel */}
-      <div className="mt-[24px] w-[1140px] mx-auto flex justify-between items-center">
-        <div className="text-[12px] font-mono text-[#6E6E6E] flex items-center gap-3">
-          <span>Log Hash: sha256:b73f9fa124c3d...1a2d</span>
-          <span className="bg-[#E5FBE5] border border-[#4CAF50] text-[#4CAF50] text-[12px] px-2 py-1 rounded flex items-center gap-1">
+      <div className="w-[1140px] mx-auto flex justify-between items-center mt-[24px]">
+        <div className="text-[16px] font-mono text-[var(--color-text-secondary)] flex items-center gap-[20px]">
+          <span>Log Hash: </span> <span> sha256:b73f9fa124c3d...1a2d</span>
+          <span className="bg-[var(--color-success-light)] px-[5px] border border-[var(--color-success)] text-[var(--color-success)] text-[12px] px-2 py-1 rounded flex items-center gap-1">
             ✔ Verified
           </span>
         </div>
-        <div className="flex gap-4">
-          <button className="border border-[#4CAF50] text-[#4CAF50] bg-white hover:bg-[#F0FFF0] hover:underline text-[13px] py-[8px] px-[16px] rounded-[6px]">
-            Export Logs (.zip)
-          </button>
-          <button className="border border-[#4CAF50] text-[#4CAF50] bg-white hover:bg-[#F0FFF0] hover:underline text-[13px] py-[8px] px-[16px] rounded-[6px]">
-            Share with Auditor
-          </button>
+        <div className="flex gap-[10px]">
+          <button className="btn btn-outline">Export Logs (.zip)</button>
+          <button className="btn btn-outline">Share with Auditor</button>
         </div>
       </div>
     </div>
   );
 }
-

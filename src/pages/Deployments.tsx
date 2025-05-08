@@ -1,10 +1,8 @@
-
-
 export default function Deployments() {
   return (
-    <div className="w-[1220px] h-[960px] bg-[#F9F9F9] font-[Inter] text-[#000]">
+    <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <div className="h-[80px] bg-white flex justify-between items-center px-[40px]">
+      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
         <h1 className="text-[20px] font-semibold">Deployments</h1>
         <div className="flex items-center gap-2">
           <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
@@ -13,72 +11,83 @@ export default function Deployments() {
       </div>
 
       {/* Status Banner */}
-      <div className="mt-[24px] w-[1140px] h-[80px] bg-[#FFF5F5] border-l-[4px] border-[#F44336] flex items-center px-[20px] mx-auto">
+      <div className="w-[1140px] mx-auto bg-[#FFF5F5] border-l-[4px] border-[var(--color-error)] flex items-center px-[20px] py-[16px] rounded shadow-sm">
         <div className="flex items-start gap-4 w-full">
-          <div className="text-[#F44336] text-[24px] leading-none">⚠️</div>
+          <div className="text-[var(--color-error)] text-[20px] leading-none">⚠️</div>
           <div className="flex-1">
-            <p className="text-[16px] font-semibold text-[#F44336]">Deployment Blocked</p>
-            <p className="text-[14px] text-[#6E6E6E]">Policy enforcement failure — Missing disaster recovery tag (Policy ID: DORA 11.3.b)</p>
+            <p className="text-[16px] font-semibold text-[var(--color-error)]">Deployment Blocked</p>
+            <p className="text-[14px] text-[var(--color-text-secondary)]">Policy enforcement failure — Missing disaster recovery tag (Policy ID: DORA 11.3.b)</p>
           </div>
           <div className="text-[12px] font-mono text-right">May 5, 2025 — 13:04 UTC</div>
         </div>
       </div>
 
-      {/* YAML Diff Viewer */}
-      <div className="mt-[32px] w-[1140px] h-[240px] mx-auto grid grid-cols-2 gap-[20px]">
+{/* YAML Diff Viewer */}
+<div className="w-[1140px] h-[340px] mx-auto grid grid-cols-2 gap-[20px] mt-[32px]">
         {/* Attempted Deployment */}
-        <div className="bg-[#FAFAFA] border border-[#DDD] p-4 overflow-auto">
-          <p className="text-[14px] font-semibold mb-2">Attempted Deployment Config</p>
-          <pre className="text-[12px] font-mono whitespace-pre-wrap">
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: payment-api
-  namespace: prod
-spec:
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: payment-api
+        <div className="bg-[#FAFAFA] border border-[#DDDDDD] rounded p-4 overflow-y-auto text-[12px] pt-[20px] font-mono leading-[1.6]">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[14px] font-semibold text-black px-[10px]">Attempted Deployment Config</span>
+            <span className="text-xs px-2 py-1 bg-[#FFF5F5] text-[var(--color-error)] rounded font-medium px-[20px]">⚠️ Blocked by Policy DORA-11.3.b</span>
+          </div>
+          <pre className="whitespace-pre-wrap text-[#333333] px-[20px]">
+          {"apiVersion: apps/v1\n"}
+            {"kind: Deployment\n"}
+            {"metadata:\n"}
+            {"  name: payment-api\n"}
+            {"  namespace: prod\n"}
+            {"spec:\n"}
+            {"  replicas: 3\n"}
+            {"  template:\n"}
+            {"    metadata:\n"}
+            {"      labels:\n"}
+            {"        app: payment-api\n"}
           </pre>
         </div>
 
         {/* Compliant Configuration */}
-        <div className="bg-[#FAFAFA] border border-[#DDD] p-4 overflow-auto">
-          <p className="text-[14px] font-semibold mb-2">Compliant Configuration</p>
-          <pre className="text-[12px] font-mono whitespace-pre-wrap">
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: payment-api
-  namespace: prod
-spec:
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: payment-api
-<span className="bg-[#E5FBE5]">        dr-policy: enabled</span>
+        <div className="bg-[#FAFAFA] border border-[#DDDDDD] rounded p-4 overflow-y-auto text-[12px] pt-[20px] font-mono leading-[1.6]">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[14px] font-semibold text-black px-[10px]">Compliant Configuration</span>
+            <span className="text-xs px-2 py-1 bg-[var(--color-success-light)] text-[var(--color-success)] rounded font-medium px-[20px]">✅ Validated</span>
+          </div>
+          <pre className="whitespace-pre-wrap text-[#333333] px-[20px]">
+            {"apiVersion: apps/v1\n"}
+            {"kind: Deployment\n"}
+            {"metadata:\n"}
+            {"  name: payment-api\n"}
+            {"  namespace: prod\n"}
+            {"spec:\n"}
+            {"  replicas: 3\n"}
+            {"  template:\n"}
+            {"    metadata:\n"}
+            {"      labels:\n"}
+            {"        app: payment-api\n"}
+            <span className="inline-block bg-[var(--color-success-light)] border-l-2 border-[var(--color-success)] pl-2 font-semibold relative group">
+              {"        dr-policy: enabled"}
+              <div className="absolute top-full left-0 mt-1 hidden group-hover:block bg-white border border-[#CCCCCC] text-[12px] text-[#000] px-3 py-2 rounded shadow-md w-[220px] z-50">
+                <p><strong>Added for DORA 11.3.b compliance</strong></p>
+              </div>
+            </span>
           </pre>
         </div>
       </div>
 
       {/* Fix and Redeploy Button */}
-      <div className="flex justify-end mt-[16px] w-[1140px] mx-auto">
-        <button className="bg-[#4CAF50] hover:bg-[#43A047] text-white text-[14px] font-semibold py-[10px] px-[16px] rounded-[6px] flex items-center gap-2">
+      <div className="flex justify-end w-[1140px] mx-auto">
+        <button className="btn btn-primary flex items-center gap-2">
           <span>▶️</span> Fix and Redeploy
         </button>
       </div>
 
       {/* Recent Deployments Table */}
-      <div className="mt-[40px] w-[1140px] mx-auto">
-        <div className="bg-[#F0F0F0] text-[14px] font-semibold grid grid-cols-4 py-2 px-4">
-          <div>Date</div>
-          <div>Status</div>
-          <div>Policy Triggered</div>
-          <div>Commit ID</div>
-        </div>
+      <div className="w-[1140px] mx-auto">
+      <div className="w-full flex items-center justify-between px-4 py-3 pb-[10px] border-b border-[var(--color-border)] bg-[#F9FAFB] text-[14px] font-semibold text-[#000]">
+        <div className="w-1/4 text-left">Date</div>
+        <div className="w-1/4 text-left">Status</div>
+        <div className="w-1/4 text-left">Policy Triggered</div>
+        <div className="w-1/4 text-left">Commit ID</div>
+      </div>
         {[
           {
             date: "May 5, 2025",

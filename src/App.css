@@ -3,7 +3,7 @@
   --color-bg: #FFFFFF;
   --color-text: #000000;
   --color-text-secondary: #6E6E6E;
-  --color-success: #4CAF50;
+  --color-success: #354357;
   --color-success-light: #E5FBE5;
   --color-warning: #FF9800;
   --color-error: #F44336;
@@ -16,7 +16,7 @@
 
   --color-sidebar-bg: #323232;
   --color-sidebar-hover: #555555;
-  --color-sidebar-active-indicator: #ACBACD;
+  --color-sidebar-active-indicator: #354357;
 }
 
 /* ===== GLOBAL ===== */
@@ -133,18 +133,18 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--color-success);
+  background-color: var(--color-sidebar-active-indicator);
   color: #FFFFFF;
 }
 
 .btn-primary:hover {
-  background-color: #45A045;
+  background-color: #ACBACD;
 }
 
 .btn-outline {
   background: #FFFFFF;
-  border: 1px solid var(--color-success);
-  color: var(--color-success);
+  border: 1px solid var(--color-sidebar-active-indicator);
+  color: var(--color-sidebar-active-indicator);
 }
 
 .btn-outline:hover {
@@ -216,5 +216,5 @@ body {
 
 input[type='range'] {
   width: 100%;
-  accent-color: var(--color-success);
+  accent-color: var(--color-sidebar-active-indicator);
 }

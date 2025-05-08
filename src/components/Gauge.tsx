@@ -21,7 +21,7 @@ type GaugeProps = {
           cy={radius}
         />
         <circle
-          stroke={percentage >= 99.5 ? "#4CAF50" : percentage >= 99 ? "#FF9800" : "#F44336"}
+          stroke={percentage >= 99.5 ? "#354357" : percentage >= 99 ? "#FF9800" : "#F44336"}
           fill="transparent"
           strokeWidth={strokeWidth}
           strokeDasharray={circumference + " " + circumference}
