@@ -144,7 +144,9 @@ body {
 .btn-outline {
   background: #FFFFFF;
   border: 1px solid var(--color-sidebar-active-indicator);
+  border-radius: 8px;
   color: var(--color-sidebar-active-indicator);
+  padding: 5px;
 }
 
 .btn-outline:hover {
