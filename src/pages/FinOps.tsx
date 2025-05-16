@@ -1,3 +1,4 @@
+import Topbar from "../components/Topbar";
 import { useState } from "react";
 import {
   LineChart,
@@ -52,13 +53,8 @@ export default function FinOps() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px] text-[#000]">
       {/* Top Navigation Bar */}
-      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
-        <h1 className="text-[20px] font-semibold">FinOps</h1>
-        <div className="flex items-center gap-[5px]">
-          <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
-          <span className="text-[14px]">NordLedger (Admin)</span>
-        </div>
-      </div>
+      <Topbar page="Overview" />
+
 
       {/* Cost Comparison Charts */}
       <section className="w-full max-w-[1140px] mx-auto space-y-[40px] mt-[32px]">

@@ -1,5 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { Gauge } from "../components/Gauge";
+import Topbar from "../components/Topbar";
 
 const dataLatency = [
   { time: "May 1, 00:00", value: 105 },
@@ -15,13 +16,7 @@ export default function Overview() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
-        <h1 className="text-[20px] font-semibold">Overview</h1>
-        <div className="flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
-          <span className="text-[14px]">NordLedger (Admin)</span>
-        </div>
-      </div>
+      <Topbar page="Overview" />
 
       {/* KPI Card Row */}
       <div className="grid grid-cols-3 gap-[20px]">

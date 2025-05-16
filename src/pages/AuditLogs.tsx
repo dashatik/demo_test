@@ -1,14 +1,12 @@
+import Topbar from "../components/Topbar";
+
+
 export default function AuditLogs() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
-        <h1 className="text-[20px] font-semibold">Audit Logs</h1>
-        <div className="flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
-          <span className="text-[14px]">NordLedger (Admin)</span>
-        </div>
-      </div>
+      <Topbar page="Overview" />
+
 
       {/* Filter Panel */}
       <div className="w-[1140px] mx-auto flex justify-between items-center mt-[24px] ">

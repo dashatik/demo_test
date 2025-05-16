@@ -1,6 +1,7 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { Gauge } from "../components/Gauge"; // Assume donut chart is a custom Gauge component
 import mapImage from '../assets/MapChart_Map.png';
+import Topbar from "../components/Topbar";
 
 
 const dataLatency = [
@@ -17,13 +18,8 @@ export default function Infrastructure() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
-        <h1 className="text-[20px] font-semibold">Infrastructure</h1>
-        <div className="flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
-          <span className="text-[14px]">NordLedger (Admin)</span>
-        </div>
-      </div>
+      <Topbar page="Overview" />
+      
 
       {/* Region Map Panel (Interactive) */}
       <div className="flex flex-col items-center gap-4">

@@ -1,14 +1,10 @@
+import Topbar from "../components/Topbar";
+
 export default function Deployments() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
-        <h1 className="text-[20px] font-semibold">Deployments</h1>
-        <div className="flex items-center gap-2">
-          <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
-          <span className="text-[14px]">NordLedger (Admin)</span>
-        </div>
-      </div>
+      <Topbar page="Overview" />
 
       {/* Status Banner */}
       <div className="w-[1140px] mx-auto bg-[#FFF5F5] border-l-[4px] border-[var(--color-error)] flex items-center px-[20px] py-[16px] rounded shadow-sm">
