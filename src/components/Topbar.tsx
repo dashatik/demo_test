@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LogOut, User, Bell, Key, Palette, Monitor, Rss } from "lucide-react";
+import { LogOut, User, Bell, Palette } from "lucide-react";
 
 interface TopbarProps {
   page: string;
