@@ -16,19 +16,26 @@ export default function Overview() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <Topbar page="Overview" />
+      <Topbar page="Overview"/>
+      <div className="bg-red-500 text-white p-4">Test block</div>
 
       {/* KPI Card Row */}
       <div className="grid grid-cols-3 gap-[20px]">
         {/* Compliance Readiness Card */}
         <div className="card">
-          <h2 className="card-title">Compliance Readiness</h2>
-          <p className="card-subtitle">Coverage: DORA, GDPR, eIDAS</p>
-          <div className="progress-bar mt-[12px]">
-            <div className="progress-bar-fill" style={{ width: "92%" }}></div>
-          </div>
-          <div className="text-right mt-[6px] text-[12px] text-[var(--color-text-secondary)]">92% Ready</div>
-          <p className="card-footer-link mt-[8px]">View Full Report</p>
+    <h2 className="text-[16px] font-semibold">Compliance Readiness</h2>
+    <p className="text-[14px] text-[var(--color-text-secondary)] mt-[6px]">
+      Coverage: DORA, GDPR, eIDAS
+    </p>
+    <div className="w-full h-[10px] bg-[#EEE] rounded-full mt-[12px]">
+      <div className="h-full bg-[var(--color-success)] rounded-full" style={{ width: "92%" }}></div>
+    </div>
+    <div className="text-right mt-[6px] text-[12px] text-[var(--color-text-secondary)]">
+      92% Ready
+    </div>
+    <p className="text-[12px] text-[var(--color-success)] underline cursor-pointer mt-[8px]">
+      View Full Report
+    </p>
         </div>
 
         {/* Audit Status Card */}

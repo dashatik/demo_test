@@ -5,7 +5,7 @@ export default function AuditLogs() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <Topbar page="Overview" />
+      <Topbar page="Audit Logs" />
 
 
       {/* Filter Panel */}

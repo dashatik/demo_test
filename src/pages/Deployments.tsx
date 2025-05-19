@@ -4,7 +4,7 @@ export default function Deployments() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       {/* Top Navigation Bar */}
-      <Topbar page="Overview" />
+      <Topbar page="Deployments"/>
 
       {/* Status Banner */}
       <div className="w-[1140px] mx-auto bg-[#FFF5F5] border-l-[4px] border-[var(--color-error)] flex items-center px-[20px] py-[16px] rounded shadow-sm">
@@ -61,7 +61,7 @@ export default function Deployments() {
             {"        app: payment-api\n"}
             <span className="inline-block bg-[var(--color-success-light)] border-l-2 border-[var(--color-success)] pl-2 font-semibold relative group">
               {"        dr-policy: enabled"}
-              <div className="absolute top-full left-0 mt-1 hidden group-hover:block bg-white border border-[#CCCCCC] text-[12px] text-[#000] px-3 py-2 rounded shadow-md w-[220px] z-50">
+              <div className="absolute top-full left-0 mt-[5px] hidden group-hover:block px-[10px] bg-white border border-[#CCCCCC] text-[12px] text-[#000] px-3 py-2 rounded shadow-md w-[220px] z-50">
                 <p><strong>Added for DORA 11.3.b compliance</strong></p>
               </div>
             </span>

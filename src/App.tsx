@@ -8,7 +8,7 @@ import Regions from './pages/Regions';
 import Sidebar from './components/Sidebar';
 import Login from "./pages/Login";
 import AuthWrapper from "./components/AuthWrapper";
-import './App.css';
+import './index.css';
 
 export default function App() {
   return (

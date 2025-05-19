@@ -53,7 +53,7 @@ export default function FinOps() {
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px] text-[#000]">
       {/* Top Navigation Bar */}
-      <Topbar page="Overview" />
+      <Topbar page="FinOps"/>
 
 
       {/* Cost Comparison Charts */}
