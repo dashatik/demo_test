@@ -30,7 +30,7 @@ export default function Login() {
     </div>
 
       {/* Right panel (form) */}
-      <div className="w-1/2 flex justify-center items-center ">
+      <div className="w-1/2 flex justify-center items-center px-[100px]">
         <div className="w-full max-w-[360px] px-[16px]">
           {/* Heading */}
           <div className=" flex justify-between items-center mb-[8px] ">
