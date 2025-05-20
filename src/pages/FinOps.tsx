@@ -59,7 +59,7 @@ export default function FinOps() {
       {/* Cost Comparison Charts */}
       <section className="w-full max-w-[1140px] mx-auto space-y-[40px] mt-[32px]">
         <h2 className="text-[16px] font-semibold text-[#000] pb-[24px]">
-          Cost Breakdown: Transtar vs AWS
+          Cost Breakdown: Comparison
         </h2>
 
         {Object.entries(COST_TRENDS).map(([label, chartData], i) => (
@@ -144,7 +144,7 @@ export default function FinOps() {
               : "text-[#000]"
           }`}
         >
-          Projected Monthly Cost: €{projectedCost.toLocaleString()}
+          You are saving €{projectedCost.toLocaleString()}/month 
         </div>
       </section>
       <section className="w-full max-w-[1140px] mx-auto">

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut, User, Bell, Palette } from "lucide-react";
 
+
 interface TopbarProps {
   page: string;
 }
@@ -29,7 +30,7 @@ export default function Topbar({ page }: TopbarProps) {
   }, []);
 
 return (
-  <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)] px-[40px]">
+  <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)]">
     <h1 className="text-[20px] font-semibold">{page}</h1>
 
     <div className="relative" ref={dropdownRef}>

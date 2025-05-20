@@ -23,7 +23,7 @@ export default function Sidebar() {
     <aside className="fixed left-0 top-0 h-screen w-[220px] bg-[#1E1E1E] text-white flex flex-col justify-between px-4 py-6 z-50">
       {/* Top Branding & Nav */}
       <div className="flex flex-col gap-[20px]">
-        <div className="flex justify-center mt-[20px]">
+        <div className="flex pl-[15px] mt-[20px]">
           <img src={logo} alt="Transtar logo" className="w-[70px] h-auto" />
         </div>
 

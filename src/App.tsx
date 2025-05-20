@@ -10,6 +10,8 @@ import Sidebar from './components/Sidebar';
 import Login from "./pages/Login";
 import AuthWrapper from "./components/AuthWrapper";
 import SmallScreenBlocker from "./components/SmallScreenBlocker";
+import Notifications from './pages/Notifications';
+import Profile from './pages/Profile';
 import './index.css';
 
 export default function App() {
@@ -40,6 +42,8 @@ export default function App() {
                   <Route path="/audit-logs" element={<AuditLogs />} />
                   <Route path="/finops" element={<FinOps />} />
                   <Route path="/regions" element={<Regions />} />
+                  <Route path="/profile/notifications" element={<Notifications />} />
+                  <Route path="/profile" element={<Profile />} />
                 </Routes>
               </main>
             </div>

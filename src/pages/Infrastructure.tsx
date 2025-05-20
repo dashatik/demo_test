@@ -1,18 +1,7 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { Gauge } from "../components/Gauge"; // Assume donut chart is a custom Gauge component
-import mapImage from '../assets/MapChart_Map.png';
 import Topbar from "../components/Topbar";
-
-
-const dataLatency = [
-  { time: "May 1, 00:00", value: 105 },
-  { time: "May 1, 12:00", value: 122 },
-  { time: "May 2, 00:00", value: 98 },
-  { time: "May 2, 12:00", value: 130 },
-  { time: "May 3, 00:00", value: 115 },
-  { time: "May 3, 12:00", value: 140 },
-  { time: "May 4, 00:00", value: 104 },
-];
+import Map from "../components/Map";
+import P95 from "../components/P95Latency";
 
 export default function Infrastructure() {
   return (
@@ -24,52 +13,7 @@ export default function Infrastructure() {
       {/* Region Map Panel (Interactive) */}
       <div className="flex flex-col items-center gap-4">
         <h2 className="text-[16px] font-semibold text-[var(--color-text)] self-start">Deployment Regions</h2>
-        <div className="w-[660px] h-[280px] bg-[#F9FAFB] border border-[#E0E0E0] rounded-[8px] px-[24px] py-[16px] relative overflow-hidden ">
-          <img
-            src={mapImage}
-            alt="Map Background"
-            loading="eager"
-            className="absolute top-[0px] left-[-400px] w-[1330PX] h-full object-cover opacity-90 pointer-events-none"
-          />
-          {/* Finland */}
-          <div className="absolute left-[450px] top-[165px] flex items-center group gap-[5px]">
-            <div className="w-[14px] h-[14px] bg-[var(--color-success)] rounded-full" />
-            <span className="text-[13px] font-bold text-[#eee] bg-[#212121] px-[5px] pl-2">🇫🇮 Finland (Primary)</span>
-            <div className="absolute right-[100%] top-[-150px] px-[10px] ml-3 hidden group-hover:block bg-[#eee] border border-[#CCC] rounded shadow-md p-3 w-[220px] text-[12px] z-10">
-              <p className="font-semibold mb-1">🇫🇮 Finland</p>
-              <p><span className="text-[#6E6E6E]">Status:</span> <span className="text-[#000]">Active</span></p>
-              <p><span className="text-[#6E6E6E]">Location:</span> <span className="text-[#000]">Helsinki</span></p>
-              <p><span className="text-[#6E6E6E]">Last Sync:</span> <span className="text-[#000]">May 7, 09:14 UTC</span></p>
-              <p><span className="text-[#6E6E6E]">Avg Latency:</span> <span className="text-[#000]">45ms</span></p>
-            </div>
-          </div>
-
-          {/* Sweden */}
-          <div className="absolute left-[335px] top-[230px] flex items-center group gap-[5px]">
-            <div className="w-[14px] h-[14px] bg-[var(--color-warning)] rounded-full" />
-            <span className="text-[13px] font-bold text-[#eee] bg-[#212121] px-[5px] pl-2">🇸🇪 Sweden (Failover)</span>
-            <div className="absolute right-[100%] top-[-150px] px-[10px] ml-3 hidden group-hover:block bg-[#eee] border border-[#CCC] rounded shadow-md p-3 w-[220px] text-[12px] z-10">
-              <p className="font-semibold mb-1">🇸🇪 Sweden</p>
-              <p><span className="text-[#6E6E6E]">Status:</span> <span className="text-[#000]">Failover Ready</span></p>
-              <p><span className="text-[#6E6E6E]">Location:</span> <span className="text-[#000]">Stockholm</span></p>
-              <p><span className="text-[#6E6E6E]">Last Sync:</span> <span className="text-[#000]">May 6, 18:12 UTC</span></p>
-              <p><span className="text-[#6E6E6E]">Avg Latency:</span> <span className="text-[#000]">78ms</span></p>
-            </div>
-          </div>
-
-          {/* Denmark */}
-          <div className="absolute left-[310px] top-[250px] flex items-center group gap-[5px]">
-            <div className="w-[14px] h-[14px] bg-[var(--color-disabled)] rounded-full" />
-            <span className="text-[13px] font-bold text-[#eee] bg-[#212121] px-[5px] pl-2 ">🇩🇰 Denmark (Disabled)</span>
-            <div className="absolute right-[100%] top-[-150px] px-[10px] ml-3 hidden group-hover:block bg-[#eee] border border-[#CCC] rounded shadow-md p-3 w-[220px] text-[12px] z-10">
-              <p className="font-semibold mb-1">🇩🇰 Denmak</p>
-              <p><span className="text-[#6E6E6E]">Status:</span> <span className="text-[#000]">Disabled</span></p>
-              <p><span className="text-[#6E6E6E]">Location:</span> <span className="text-[#000]">Copenhagen</span></p>
-              <p><span className="text-[#6E6E6E]">Last Sync:</span> <span className="text-[#000]">—</span></p>
-              <p><span className="text-[#6E6E6E]">Avg Latency:</span> <span className="text-[#000]">—</span></p>
-            </div>
-          </div>
-        </div>
+        <Map/>
       </div>
 
       {/* Infrastructure Component Grid */}
@@ -143,20 +87,7 @@ export default function Infrastructure() {
         {/* Line Chart */}
         <div className="card">
           <h2 className="card-title mb-3">P95 API Latency (Global)</h2>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={dataLatency}>
-              <XAxis dataKey="time" tick={{ fontSize: 10 }} />
-              <YAxis domain={[60, 260]} tick={{ fontSize: 10 }} />
-              <Tooltip formatter={(value: number) => [`${value}ms`, '']} />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="#007BFF"
-                strokeWidth={2}
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <P95/>
         </div>
 
         {/* Gauge */}
