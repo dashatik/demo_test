@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from "react";
 import Overview from './pages/Overview';
 import Infrastructure from './pages/Infrastructure';
 import Deployments from './pages/Deployments';
@@ -8,9 +9,20 @@ import Regions from './pages/Regions';
 import Sidebar from './components/Sidebar';
 import Login from "./pages/Login";
 import AuthWrapper from "./components/AuthWrapper";
+import SmallScreenBlocker from "./components/SmallScreenBlocker";
 import './index.css';
 
 export default function App() {
+  const [isTooSmall, setIsTooSmall] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsTooSmall(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  if (isTooSmall) return <SmallScreenBlocker />;
   return (
     <Routes>
       <Route path="/login" element={<Login />} />

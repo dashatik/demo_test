@@ -10,6 +10,9 @@ const dataLatency = [
   { time: "May 3, 00:00", value: 115 },
   { time: "May 3, 12:00", value: 140 },
   { time: "May 4, 00:00", value: 104 },
+  { time: "May 5, 12:00", value: 120 },
+  { time: "May 6, 00:00", value: 116 },
+  { time: "May 7, 12:00", value: 120 },
 ];
 
 export default function Overview() {
@@ -82,7 +85,7 @@ export default function Overview() {
 
         {/* Chart B */}
         <div className="card flex flex-col items-center justify-center">
-          <h2 className="card-title mb-3">Uptime Gauge</h2>
+          <h2 className="card-title mb-3">Uptime and Zero-Tolerance</h2>
           <Gauge percentage={99.95} size={200} />
           <p className="text-[12px] text-[var(--color-text-secondary)] mt-2 text-center">30-day SLA target met</p>
         </div>

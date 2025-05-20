@@ -24,10 +24,11 @@ export default function Infrastructure() {
       {/* Region Map Panel (Interactive) */}
       <div className="flex flex-col items-center gap-4">
         <h2 className="text-[16px] font-semibold text-[var(--color-text)] self-start">Deployment Regions</h2>
-        <div className="w-[660px] h-[280px] bg-[#F9FAFB] border border-[#E0E0E0] rounded-[8px] px-[24px] py-[16px] relative overflow-hidden">
+        <div className="w-[660px] h-[280px] bg-[#F9FAFB] border border-[#E0E0E0] rounded-[8px] px-[24px] py-[16px] relative overflow-hidden ">
           <img
             src={mapImage}
             alt="Map Background"
+            loading="eager"
             className="absolute top-[0px] left-[-400px] w-[1330PX] h-full object-cover opacity-90 pointer-events-none"
           />
           {/* Finland */}

@@ -38,12 +38,15 @@ return (
         onClick={() => setOpen(!open)}
       >
         <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
-        <span className="text-[14px]">NordLedger (Admin)</span>
+            <div className="flex flex-col text-[14px] text-left leading-tight">
+            <span>Thomas Lodberg</span>
+            <span className="text-[12px] text-[#888]">dewa</span>
+            </div>
       </div>
 
       {open && (
-        <div className="absolute right-0 mt-[8px] w-[240px] bg-[#1E1E1E] text-white rounded-[8px] shadow-lg ring-1 ring-[#2A2A2A] z-50">
-          <div className="px-[16px] py-[8px] text-[14px] text-[#eee] font-medium border-b border-[#333]">admin</div>
+        <div className="absolute right-0 mt-[8px] w-[230px] bg-[#1E1E1E] text-white rounded-[8px] shadow-lg ring-1 ring-[#2A2A2A] z-50">
+          <div className="px-[16px] py-[8px] text-[14px] text-[#eee] font-medium border-b border-[#333]">user</div>
           <div className="flex flex-col text-[14px]">
             <Link to="/profile" className="flex items-center no-underline gap-[8px] px-[16px] py-[8px] text-[#eee] hover:bg-[#2A2A2A] transition-all">
               <User size={16} /> Profile
