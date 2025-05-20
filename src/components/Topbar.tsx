@@ -28,9 +28,6 @@ export default function Topbar({ page }: TopbarProps) {
     };
   }, []);
 
-
-
-  
 return (
   <div className="flex justify-between items-center h-[80px] border-b border-[var(--color-border)] px-[40px]">
     <h1 className="text-[20px] font-semibold">{page}</h1>
