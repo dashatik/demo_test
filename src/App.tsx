@@ -17,6 +17,7 @@ import './index.css';
 
 export default function App() {
   const [isTooSmall, setIsTooSmall] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false); // NEW
 
   useEffect(() => {
     const check = () => setIsTooSmall(window.innerWidth < 768);
@@ -26,6 +27,7 @@ export default function App() {
   }, []);
 
   if (isTooSmall) return <SmallScreenBlocker />;
+
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
@@ -35,8 +37,14 @@ export default function App() {
         element={
           <AuthWrapper>
             <div className="flex">
-              <Sidebar />
-              <main className="ml-[220px] w-[calc(100%-220px)] h-screen overflow-y-auto bg-[#F9FAFC]">
+              <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
+              <main
+                className={`transition-all duration-300 ${
+                  sidebarCollapsed
+                    ? "ml-[60px] w-[calc(100%-60px)]"
+                    : "ml-[220px] w-[calc(100%-220px)]"
+                } h-screen overflow-y-auto bg-[#F9FAFC]`}
+              >
                 <Routes>
                   <Route path="/" element={<Overview />} />
                   <Route path="/infrastructure" element={<Infrastructure />} />
