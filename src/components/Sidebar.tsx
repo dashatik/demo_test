@@ -1,19 +1,21 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/Just-T-logo.png";
-import homeIcon from "../assets/assets/home.png";
-import infraIcon from "../assets/assets/infra.png";
-import deployIcon from "../assets/assets/deployment.png";
-import auditIcon from "../assets/assets/audit.png";
-import finopsIcon from "../assets/assets/finops.png";
-import regionsIcon from "../assets/assets/regions.png";
+import {
+  LayoutDashboard,
+  Server,
+  Rocket,
+  ScrollText,
+  Wallet,
+  Globe,
+} from "lucide-react";
 
 const navItems = [
-  { to: "/", label: "Overview", icon: homeIcon },
-  { to: "/infrastructure", label: "Infrastructure", icon: infraIcon },
-  { to: "/deployments", label: "Deployments", icon: deployIcon },
-  { to: "/audit-logs", label: "Audit Logs", icon: auditIcon },
-  { to: "/finops", label: "FinOps", icon: finopsIcon },
-  { to: "/regions", label: "Regions", icon: regionsIcon },
+  { to: "/", label: "Overview", icon: <LayoutDashboard size={18} /> },
+  { to: "/infrastructure", label: "Infrastructure", icon: <Server size={18} /> },
+  { to: "/deployments", label: "Deployments", icon: <Rocket size={18} /> },
+  { to: "/audit-logs", label: "Audit Logs", icon: <ScrollText size={18} /> },
+  { to: "/finops", label: "FinOps", icon: <Wallet size={18} /> },
+  { to: "/regions", label: "Regions", icon: <Globe size={18} /> },
 ];
 
 export default function Sidebar() {
@@ -32,17 +34,17 @@ export default function Sidebar() {
             <Link
               key={to}
               to={to}
-              className={`flex items-center gap-[20px] px-[5px] py-[5px] rounded-md text-[14px] font-medium ${
+              className={`flex items-center gap-[16px] px-[5px] py-[5px] rounded-md text-[14px] font-medium ${
                 location.pathname === to ? "active" : ""
               }`}
             >
-              <img src={icon} alt={`${label} icon`} className="w-[18px] h-0" />
+              {icon}
               <span>{label}</span>
             </Link>
           ))}
         </nav>
       </div>
-
+      
       {/* VPN Status */}
       <div className=" rounded-lg px-[60px] py-3 text-white text-[13px] flex flex-col gap-2 mb-[20px]">
         <div className="flex items-center gap-2">
