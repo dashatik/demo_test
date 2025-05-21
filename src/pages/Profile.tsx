@@ -1,5 +1,8 @@
 import PermissionGroup from "../components/PermissionGroup";
 import Topbar from "../components/Topbar";
+import { Pencil } from "lucide-react";
+import PermissionViewer from "../components/PermissionViewer";
+
 
 export default function Profile() {
   return (
@@ -10,7 +13,33 @@ export default function Profile() {
           This section contains account information and current role access.
         </p>
       </div>
-
+      <div
+        className="relative h-[160px] flex items-end justify-between rounded-[8px] px-[40px] pb-[24px] text-white"
+        style={{
+            backgroundImage: "url('/bgh1-LQ.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+        }}
+        >
+        <div> 
+          <h1 className="text-[24px] text-[#fff] font-semibold">Thomas Lodberg</h1>
+          <p className="text-[14px] text-[#fff]">thomas@dewa-id.com</p>
+        </div>
+        <div className="absolute right-[40px] bottom-[-40px]">
+          <div className="w-[80px] h-[80px] rounded-full bg-[#7C1D1D] flex items-center justify-center text-[32px] text-white border-4 border-white">
+            {/* Placeholder avatar */}
+            <span>🧩</span>
+          </div>
+        </div>
+      </div>
+      {/* Floating Edit Button */}
+      <div className=" mt-[10px] flex items-center gap-[10px]">
+        <button className="btn btn-primary flex items-center gap-[5px] text-[14px] font-medium px-[5px] py-[2px] transition">
+          <Pencil size={14} /> Edit
+        </button>
+        <span className="text-[12px] px-[5px] py-[2px] rounded-[3px] bg-[#4CAF50] text-[#fff] font-semibold">ACTIVE</span>
+      </div>
       {/* Meta Info */}
       <div className="grid grid-cols-3 gap-y-[24px] gap-x-[16px]">
         <div>
@@ -40,9 +69,34 @@ export default function Profile() {
           <span className="text-[14px] text-[#333]">Default / <span className="text-green-600">Verified</span></span>
         </div>
       </div>
-
+        <PermissionViewer
+        count={18}
+        permissions={[
+            {
+            title: "User Access Manage",
+            description: "Disable users, manage user roles, manage SAML-to-role mappings, and configure logs restriction queries."
+            },
+            {
+            title: "Org Management",
+            description: "Edit org configurations, including authentication and certain security preferences such as configuring SAML, renaming an org, configuring allowed login methods, creating child orgs, subscribing & unsubscribing from apps in the marketplace, and enabling & disabling Remote Configuration for the entire organization."
+            },
+            {
+            title: "User Access Invite",
+            description: "Invite other users to your organization."
+            },
+            {
+            title: "User App Keys",
+            description: "View and manage Application Keys owned by the user."
+            },
+            {
+            title: "Org App Keys Write",
+            description: "Manage Application Keys owned by all users in the organization."
+            },
+            // add 13 more permissions here or just duplicate
+        ]}
+        />
       {/* Permissions */}
-    <div className="p-[32px]">
+    <div className="pt-[30px]">
         <h1 className="text-[20px] font-semibold mb-[16px]">Permissions</h1>
         <PermissionGroup
             title="Access Management"

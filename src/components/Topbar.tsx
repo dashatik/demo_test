@@ -39,10 +39,17 @@ return (
         onClick={() => setOpen(!open)}
       >
         <div className="w-[40px] h-[40px] rounded-full bg-gray-300" />
+                      <div className="w-[30px] h-[30px] rounded-full bg-[#7C1D1D] flex items-center justify-center text-[15px] text-white border-2 border-white">
+            {/* Placeholder avatar */}
+            <span>🧩</span>
+          </div>
             <div className="flex flex-col text-[14px] text-left leading-tight">
             <span>Thomas Lodberg</span>
             <span className="text-[12px] text-[#888]">dewa</span>
             </div>
+            <div className="flex right-[40px] bottom-[-40px]">
+
+          </div>
       </div>
 
       {open && (

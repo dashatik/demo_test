@@ -63,6 +63,17 @@ export default function Login() {
           >
             Log in
           </button>
+          {/* Signup / Setup Environment */}
+            <button
+            onClick={() => {
+                localStorage.setItem("loggedIn", "true");
+                localStorage.removeItem("onboarded");
+                navigate("/provision");
+            }}
+            className="block cursor-pointer items-center bg-transparent  hover:text-[#666] text-white text-[14px] py-[10px] rounded-[4px] underline border-none"
+            >
+            Register Account
+            </button>
           </div>
         </div>
       </div>

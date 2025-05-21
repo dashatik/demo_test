@@ -165,6 +165,10 @@ body {
   background-color: var(--color-success-light);
 }
 
+.btn-disabled {
+    background-color: var(--color-disabled); 
+    color:rgb(141, 141, 141);
+}
 
 .table {
   width: 100%;
