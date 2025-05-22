@@ -12,14 +12,24 @@ const dataLatency = [
   { time: "May 5, 12:00", value: 120 },
   { time: "May 6, 00:00", value: 116 },
   { time: "May 7, 12:00", value: 120 },
+  { time: "May 8, 12:00", value: 120 },
+  { time: "May 9, 12:00", value: 136 },
+  { time: "May 10, 12:00", value: 120 },
+  { time: "May 11, 00:00", value: 105 },
+  { time: "May 12, 00:00", value: 122 },
+  { time: "May 13, 00:00", value: 98 },
+  { time: "May 14, 12:00", value: 130 },
+  { time: "May 15, 00:00", value: 115 },
+  { time: "May 16, 12:00", value: 140 },
+
 ];
 
 export default function P95() {
   return (
-              <ResponsiveContainer width="100%" height={200}>
+              <ResponsiveContainer width="100%" height={380}>
                 <LineChart data={dataLatency}>
                   <XAxis dataKey="time" tick={{ fontSize: 10 }} />
-                  <YAxis domain={[60, 260]} tick={{ fontSize: 10 }} />
+                  <YAxis domain={[70, 200]} tick={{ fontSize: 10 }} />
                   <Tooltip formatter={(value: number) => [`${value}ms`, '']} />
                   <Line
                     type="monotone"

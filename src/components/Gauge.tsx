@@ -1,47 +1,65 @@
+import { useEffect, useState } from "react";
+
 type GaugeProps = {
-    percentage: number;
-    size: number;
+  percentage: number;
+  size: number;
+};
+
+export function Gauge({ percentage, size }: GaugeProps) {
+  const strokeWidth = 16;
+  const radius = size / 2 - strokeWidth;
+  const circumference = 2 * Math.PI * radius;
+  const [animatedPercentage, setAnimatedPercentage] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedPercentage(percentage);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [percentage]);
+
+  const offset = circumference - (animatedPercentage / 100) * circumference;
+
+  const getStrokeColor = () => {
+    if (animatedPercentage >= 99.95) return "#354357";
+    if (animatedPercentage >= 99.0) return "#F59E0B";
+    return "#DC2626";
   };
-  
-  export function Gauge({ percentage, size }: GaugeProps) {
-    const radius = size / 2;
-    const strokeWidth = 20;
-    const normalizedRadius = radius - strokeWidth;
-    const circumference = normalizedRadius * 2 * Math.PI;
-    const strokeDashoffset = circumference - (percentage / 100) * circumference;
-  
-    return (
-      <svg height={size} width={size}>
+
+  return (
+    <div className="relative flex flex-col items-center justify-center text-center group">
+      <svg height={size} width={size} className="rotate-[-90deg]">
         <circle
-          stroke="#E0E0E0"
+          stroke="#E5E7EB"
           fill="transparent"
           strokeWidth={strokeWidth}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
         />
         <circle
-          stroke={percentage >= 99.5 ? "#354357" : percentage >= 99 ? "#FF9800" : "#F44336"}
+          stroke={getStrokeColor()}
           fill="transparent"
           strokeWidth={strokeWidth}
-          strokeDasharray={circumference + " " + circumference}
-          style={{ strokeDashoffset, transition: "stroke-dashoffset 0.3s ease" }}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
+          style={{
+            transition: "stroke-dashoffset 1.4s ease-in-out",
+            strokeLinecap: "round",
+            filter: "drop-shadow(0 0 3px rgba(0,0,0,0.1))",
+          }}
+          className="group-hover:animate-pulse"
         />
-        <text
-          x="50%"
-          y="50%"
-          dominantBaseline="middle"
-          textAnchor="middle"
-          fontSize="18"
-          fontFamily="Inter"
-          fill="#333"
-        >
-          {percentage.toFixed(2)}%
-        </text>
       </svg>
-    );
-  }
-  
+      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-center">
+        <div className="text-[22px] font-bold text-[#111827]">
+          {animatedPercentage.toFixed(2)}%
+        </div>
+
+      </div>
+    </div>
+  );
+}

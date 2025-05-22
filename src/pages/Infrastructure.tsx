@@ -1,4 +1,4 @@
-import { Gauge } from "../components/Gauge";
+import {Gauge} from "../components/Gauge";
 import Topbar from "../components/Topbar";
 import Map from "../components/Map";
 import P95 from "../components/P95Latency";

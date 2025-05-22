@@ -1,6 +1,15 @@
-import { Gauge } from "../components/Gauge";
+import {Gauge} from "../components/Gauge";
 import Topbar from "../components/Topbar";
 import P95 from "../components/P95Latency";
+import CpuUtilization from "../components/charts/CpuUtilization";
+import MemoryUtilization from "../components/charts/MemoryUtilization";
+import ErrorBudget from "../components/charts/ErrorBudget";
+import AuditEvents from "../components/charts/AuditEvents";
+import DeploymentSummary from "../components/charts/DeploymentSummary";
+import VpnStability from "../components/charts/VpnStability";
+import IncidentBlock from "../components/IncidentBlock";
+import { LockKeyhole } from "lucide-react";
+
 
 export default function Overview({
   selectedApps,
@@ -11,89 +20,115 @@ export default function Overview({
 }) {
   const showLoki = selectedApps?.includes("loki");
   const showVault = selectedApps?.includes("vault");
-  const drRegion = cloudConfig?.drRegion;
-  const region = cloudConfig?.region;
+  const region = cloudConfig?.region || "Finland";
 
   return (
     <div className="min-h-screen bg-white px-[40px] py-[32px] space-y-[40px]">
       <Topbar page="Overview" />
 
+      {/* Time Context */}
+      <div className="text-left text-sm text-[#6B7280]">Status as of May 8, 14:35 UTC</div>
+
       {/* KPI Card Row */}
-      <div className="grid grid-cols-3 gap-[20px]">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-[24px]">
         {/* Compliance Readiness Card */}
-        <div className="card">
-          <h2 className="text-[16px] font-semibold">Compliance Readiness</h2>
-          <p className="text-[14px] text-[var(--color-text-secondary)] mt-[6px]">
-            Coverage: DORA, GDPR, eIDAS
-          </p>
-          <div className="w-full h-[10px] bg-[#EEE] rounded-full mt-[12px]">
-            <div className="h-full bg-[var(--color-success)] rounded-full" style={{ width: "92%" }}></div>
+        <div className="card p-[20px] rounded-[8px] shadow bg-white">
+          <h2 className="font-semibold text-[15px] mb-[4px]">Compliance Readiness</h2>
+          <p className="text-sm text-[#6B7280] mb-[8px]">Coverage: DORA, GDPR, eIDAS</p>
+          <div className="w-full h-[10px] bg-[#E5E7EB] rounded-full mb-2">
+            <div className="h-full bg-[#374151] rounded-full" style={{ width: "92%" }}></div>
           </div>
-          <div className="text-right mt-[6px] text-[12px] text-[var(--color-text-secondary)]">
-            92% Ready
-          </div>
-          <p className="text-[12px] text-[var(--color-success)] underline cursor-pointer mt-[8px]">
+          <div className="text-right text-xs text-[#6B7280]">92% Ready</div>
+          <button className="btn ">
             View Full Report
-          </p>
+          </button>
         </div>
 
-        {/* Audit Status Card */}
-        <div className="card flex flex-col justify-between">
+        {/* Next Scheduled Audit */}
+        <div className="card p-[20px] rounded-[8px] shadow bg-white flex flex-col justify-between">
           <div>
-            <h2 className="card-title">Next Scheduled Audit</h2>
-            <p className="text-[18px] font-bold mt-[6px]">May 30, 2025</p>
-            <p className="text-[12px] italic text-[var(--color-text-secondary)]">in 22 days</p>
+            <h2 className="font-semibold text-[15px]">Next Scheduled Audit</h2>
+            <p className="text-lg font-bold mt-2">May 30, 2025</p>
+            <p className="text-sm italic text-[#6B7280]">in 22 days</p>
           </div>
-          <button className="btn btn-primary self-start mt-3">Download Audit Pack</button>
+          <button className="btn btn-primary w-[200px]">
+            Download Audit Pack
+          </button>
         </div>
 
-        {/* Incidents Card */}
-        <div className="card">
-          <h2 className="card-title">This Month's Incidents</h2>
-          <p className="text-[14px] font-semibold text-[var(--color-error)] mt-[6px]">
-            {drRegion ? "2 Policy Violations" : "1 Policy Violation"}
-          </p>
-          <ul className="text-[12px] text-[var(--color-text-secondary)] mt-[8px] list-disc ml-4">
-            {!drRegion && <li>Missing DR tag on May 5 deploy</li>}
-            <li>VPN downtime &gt;1min on Apr 29</li>
-          </ul>
+        {/* Policy Violations */}
+        <div >
+          <IncidentBlock />
         </div>
-      </div>
-
-      {/* Lower Charts Area */}
-      <div className="grid grid-cols-2 gap-[40px]">
-        {/* Chart A */}
-        <div className="card">
-          <h2 className="card-title mb-3">
-            P95 API Latency ({region || "Finland"} ↔ Denmark)
+        {/* P95 Latency Chart */}
+        <div className="card p-[20px] rounded-[8px] shadow ">
+          <h2 className="font-semibold text-[15px] mb-3 ">
+            P95 API Latency ({region} ↔ Denmark)
           </h2>
           <P95 />
         </div>
+      </div>
 
-        {/* Chart B */}
-        <div className="card flex flex-col items-center justify-center">
-          <h2 className="card-title mb-3">Uptime and Zero-Tolerance</h2>
-          <Gauge percentage={99.95} size={200} />
-          <p className="text-[12px] text-[var(--color-text-secondary)] mt-2 text-center">
-            30-day SLA target met
-          </p>
+      {/* Observability Metrics Grid (2 rows × 3 columns) */}
+      <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+        <CpuUtilization />
+        <MemoryUtilization />
+        <ErrorBudget />
+        <AuditEvents />
+        <DeploymentSummary />
+        <VpnStability />
+      </div>
+
+      {/* Latency Chart Section */}
+      <div className="grid grid-cols-2 lg:grid-cols-2 gap-[40px] mt-[32px]">
+        {/* SLA Uptime Gauge */}
+        <div className="card p-[20px] rounded-[8px] shadow bg-white flex flex-col items-center justify-center">
+          <h2 className="font-semibold text-[15px] mb-2">Uptime and Zero-Tolerance</h2>
+          <Gauge percentage={99.95} size={160} />
+          <p className="text-xs text-[#6B7280] mt-2">30-day SLA target met</p>
+        </div>
+
+        {/* Placeholder (optional SLA distribution chart) */}
+        <div className="card p-[20px] rounded-[8px] shadow bg-white flex items-center justify-center">
+          <p className="text-[#6B7280] text-sm">SLA Distribution Chart (Coming Soon)</p>
         </div>
       </div>
 
-      {/* Optional sections */}
+      {/* Optional Audit Log Section */}
       {showLoki && (
-        <div className="card p-[20px] mt-[20px]">
-          <h2 className="text-[16px] font-semibold mb-[8px]">Audit Log Streaming Enabled</h2>
-          <p className="text-[14px] text-[#555]">Loki has been configured for tamper-evident logs. You can export raw event streams in the Audit Logs tab.</p>
+        <div className="card p-[20px] mt-[20px] rounded-[8px] bg-white shadow">
+          <h2 className="font-semibold text-[15px] mb-1">Audit Log Streaming Enabled</h2>
+          <p className="text-sm text-[#555]">
+            Loki has been configured for tamper-evident logs. You can export raw event streams in the Audit Logs tab.
+          </p>
         </div>
       )}
 
+      {/* Vault Optional Block */}
       {showVault && (
-        <div className="card p-[20px] mt-[20px]">
-          <h2 className="text-[16px] font-semibold mb-[8px]">Secrets Management</h2>
-          <p className="text-[14px] text-[#555]">Vault is configured. Token issuance and policy restrictions are now managed at cluster level.</p>
+        <div className="card p-[20px] mt-[20px] rounded-[8px] bg-white shadow">
+          <h2 className="font-semibold text-[15px] mb-1">Secrets Management</h2>
+          <p className="text-sm text-[#555]">
+            Vault is configured. Token issuance and policy restrictions are now managed at cluster level.
+          </p>
         </div>
       )}
+
+      {/* Footer */}
+      <div className="flex justify-between items-center mt-[32px] text-xs text-[#10B981]">
+        <div className="flex items-center gap-[5px]">
+          <LockKeyhole size={14} />
+          Logs verified via sha256 integrity chain.
+        </div>
+        <a
+          href="/audit-pack/NordLedger_May_2025.json"
+          className="text-[#111] underline hover:text-[#5196e1]"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open log manifest
+        </a>
+      </div>
     </div>
   );
 }
