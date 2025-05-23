@@ -25,7 +25,7 @@ export default function VpnStability() {
   return (
     <div className="h-[230px] card p-[16px] rounded-[8px] shadow bg-white flex flex-col justify-between">
       <div>
-        <h3 className="text-sm font-semibold text-[#111827] mb-[6px]">VPN Tunnel Latency (WireGuard EU)</h3>
+        <h3 className="text-sm font-semibold text-[#111827] mb-[6px]">VPN Tunnel Latency (Transtar EU)</h3>
         <p className="text-[22px] font-bold text-[#4B5563]">99.93% stable</p>
         <p className="text-xs text-[#6B7280]">
           1 latency spike auto-mitigated · SLA target: ≤ 150ms avg
