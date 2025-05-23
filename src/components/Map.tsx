@@ -16,7 +16,7 @@ export default function Map() {
             <div className="w-[14px] h-[14px] bg-[var(--color-warning)] rounded-full" />
             <span className="text-[13px] font-bold text-[#eee] bg-[#212121] px-[5px] pl-2">🇫🇮 Finland (Primary)</span>
             <div className="absolute right-[100%] top-[-150px] px-[10px] ml-3 hidden group-hover:block bg-[#eee] border border-[#CCC] rounded shadow-md pb-[10px] w-[220px] text-[12px] z-10">
-            <p className="font-semibold mb-2">🇫🇮 Finland</p>
+            <p className="font-semibold mb-2">🇫🇮 Equinix HEL1</p>
             <div className="grid grid-cols-2 gap-y-[4px]">
               <span className="text-[#6E6E6E]">Status:</span>
               <span className="text-[#000]">Active</span>
@@ -47,7 +47,7 @@ export default function Map() {
             <div className="w-[14px] h-[14px] bg-[var(--color-warning)] rounded-full" />
             <span className="text-[13px] font-bold text-[#eee] bg-[#212121] px-[5px] pl-2">🇸🇪 Sweden (Failover)</span>
               <div className="absolute right-[100%] top-[-210px] px-[10px] ml-3 hidden group-hover:block bg-[#eee] border border-[#CCC] rounded shadow-md pb-[10px] w-[220px] text-[12px] z-10">
-                <p className="font-semibold mb-2">🇸🇪 Sweden</p>
+                <p className="font-semibold mb-2">🇸🇪 Interxion STO2</p>
                 <div className="grid grid-cols-2 gap-y-[4px]">
                   <span className="text-[#6E6E6E]">Status:</span>
                   <span className="text-[#000]">Failover Ready</span>
