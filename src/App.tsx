@@ -12,7 +12,7 @@ import AuthWrapper from "./components/AuthWrapper";
 import SmallScreenBlocker from "./components/SmallScreenBlocker";
 import Notifications from './pages/Notifications';
 import Profile from './pages/Profile';
-import Provisioning from './pages/Provisioning';
+import WizardFlow from './components/provisioning/Wizard';
 import './index.css';
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/provision" element={<Provisioning />} />
+      <Route path="/provision" element={<WizardFlow />} />
       <Route
         path="/*"
         element={

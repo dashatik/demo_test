@@ -46,7 +46,7 @@ const incidents = [
 ];
 
 function renderTag(status: string) {
-  const base = "text-[12px] px-[5px] py-[2px] rounded-[8px] font-medium";
+  const base = "text-[12px] px-[5px] py-[4px] rounded-[8px] font-medium";
   switch (status) {
     case "Mitigated":
       return <span className={`${base} text-[#fff] bg-[#4CAF50]`}>{status}</span>;

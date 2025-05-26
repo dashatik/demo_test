@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { CheckCircle, AlertCircle, Loader2, Clipboard } from "lucide-react";
+import { useWizard } from "./WizardContext"; // ✅ NEW
 
 const timelineSteps = [
   { title: "Cluster Provisioning", status: "pending", desc: "3 nodes created in Finland region" },
-  { title: "Network Tunnel (VPN)", status: "pending", desc: "Encrypted WireGuard tunnel established" },
+  { title: "Network Tunnel (VPN)", status: "pending", desc: "Encrypted Transtar VPN tunnel established" },
   { title: "Helm Chart Setup", status: "pending", desc: "PostgreSQL, Redis deployed via Helm v3.13" },
   { title: "GitOps Pipeline", status: "pending", desc: "ArgoCD linked to repo: github.com/nordledger/platform" },
   { title: "Policy Enforcement", status: "pending", desc: "Blocked 1 deployment (missing DR tag)" },
@@ -21,6 +22,7 @@ export default function Step3Deploy({
   onContinue: () => void;
   onBack: () => void;
 }) {
+  const { region, drRegion, selectedApps } = useWizard(); // ✅ NEW
   const [timeline, setTimeline] = useState(timelineSteps);
   const [currentStep, setCurrentStep] = useState(0);
   const [ready, setReady] = useState(false);
@@ -66,19 +68,14 @@ export default function Step3Deploy({
   };
 
   const logContent = `deployment_id: ${clusterId}
-cluster_region: finland
+cluster_region: ${region.toLowerCase()}
 components:
-  - postgresql
-  - redis
-  - vault
-  - prometheus
-  - grafana
-  - loki
+${selectedApps.map((app) => `  - ${app}`).join("\n")}
 status:
   uptime: "00:05:32"
   p95_latency: 96ms
   vpn: "active"
-  dr_region: "standby"
+  dr_region: "${drRegion ? drRegion.toLowerCase() : "none"}"
 compliance:
   dora: "article-15-ready"
   gdpr: "32/44 coverage"`;
@@ -128,29 +125,24 @@ compliance:
             ))}
           </ol>
 
-          {/* Success banner */}
           {ready && (
             <div className="mt-[24px] p-[12px] bg-[#E8F5E9] text-[#2E7D32] rounded-[6px] text-[14px]">
-              ✅ Environment ready for audit.
+               Environment ready for audit.
             </div>
           )}
         </div>
 
         {/* Logs */}
         <div className="w-[320px] bg-[#FFFFFF] rounded-[8px] border border-[#E0E0E0] p-[16px] text-[12px] max-h-[360px] font-mono relative">
-          {/* Header */}
           <div className="flex justify-between items-center mb-[12px] font-semibold text-[#333]">
             Cluster ID: {clusterId}
             <button onClick={handleCopy} title="Copy to clipboard">
               <Clipboard size={16} className="text-[#555] hover:text-black" />
             </button>
           </div>
-
-          {/* Scrollable logs */}
           <div ref={logRef} className="overflow-y-auto max-h-[360px] pr-[4px]">
             <pre>{logContent}</pre>
           </div>
-
           {copied && (
             <div className="absolute bottom-[12px] right-[16px] text-[11px] text-green-600">
               Copied!

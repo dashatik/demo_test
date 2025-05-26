@@ -1,5 +1,5 @@
 // src/components/PermissionGroup.tsx
-import { CheckCircle } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface PermissionGroupProps {
   title: string;
@@ -26,7 +26,7 @@ export default function PermissionGroup({
         {permissions.map((item) => (
           <li key={item} className="flex justify-between items-center px-[16px] py-[12px]">
             <span className="text-[#1A1A1A]">{item}</span>
-            <CheckCircle className="text-[#4CAF50]" size={18} />
+            <Check className="text-[#4CAF50]" size={18} />
           </li>
         ))}
       </ul>

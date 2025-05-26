@@ -35,43 +35,52 @@ export default function Sidebar({
         collapsed ? "w-[60px]" : "w-[220px]"
       } bg-[#1E1E1E] text-white flex flex-col justify-between px-4 py-6 z-50 transition-all duration-300`}
     >
-      {/* Top: Logo + Toggle */}
       <div className="flex flex-col gap-[20px]">
-        <div className="flex justify-between items-center px-[8px] mt-[20px] mb-[10px]">
-          {!collapsed && (
-            <img
-              src={logo}
-              alt="Transtar logo"
-              className="w-[70px] h-auto ml-[5px]"
-            />
-          )}
-          <button
-            onClick={() => setCollapsed((prev) => !prev)}
-            className="text-[#fff] ml-auto p-1 bg-transparent hover:text-[#aaa] border-none"
-          >
-            {collapsed ? <Menu size={20} /> : <X size={20} />}
-          </button>
-        </div>
+  {/* Logo only when expanded */}
+  {!collapsed && (
+    <div className="flex justify-between items-center px-[8px] mt-[20px] mb-[10px]">
+      <img
+        src={logo}
+        alt="Transtar logo"
+        className="w-[70px] h-auto ml-[5px]"
+      />
+      <button
+        onClick={() => setCollapsed((prev) => !prev)}
+        className="text-[#fff] ml-auto p-1 bg-transparent hover:text-[#aaa] border-none mt-[-50px]"
+      >
+        <X size={20} />
+      </button>
+    </div>
+  )}
 
-        {/* Navigation Items */}
-        <nav className="sidebar-nav flex flex-col gap-[5px]">
-          {navItems.map(({ to, label, icon: Icon }) => (
-            <Link
-              key={to}
-              to={to}
-              className={`flex items-center ${
-                collapsed ? "justify-center" : "gap-[16px]"
-              } px-[5px] py-[5px] rounded-md text-[14px] font-medium ${
-                location.pathname === to ? "active bg-[#333]" : ""
-              }`}
-              title={collapsed ? label : ""}
-            >
-              <Icon size={18} />
-              {!collapsed && <span>{label}</span>}
-            </Link>
-          ))}
-        </nav>
-      </div>
+  {/* Navigation Items + Collapsed Toggle */}
+  <nav className="sidebar-nav flex flex-col gap-[5px]">
+    {collapsed && (
+      <button
+        onClick={() => setCollapsed((prev) => !prev)}
+        className="flex items-center justify-center py-[5px] bg-transparent border-none text-[#fff] rounded-md hover:text-[#aaa] mt-[10px] mb-[60px]"
+        title="Expand Menu"
+      >
+        <Menu size={20} />
+      </button>
+    )}
+    {navItems.map(({ to, label, icon: Icon }) => (
+      <Link
+        key={to}
+        to={to}
+        className={`flex items-center ${
+          collapsed ? "justify-center" : "gap-[16px]"
+        } px-[5px] py-[5px] rounded-md text-[14px] font-medium ${
+          location.pathname === to ? "active bg-[#333]" : ""
+        }`}
+        title={collapsed ? label : ""}
+      >
+        <Icon size={18} />
+        {!collapsed && <span>{label}</span>}
+      </Link>
+    ))}
+  </nav>
+</div>
 
       {/* Bottom: VPN Status */}
       {!collapsed && (

@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useWizard } from "./WizardContext"; // ✅ NEW
 
 const providers = ["AWS", "GKE", "Azure"];
 const regions = {
-  AWS: ["Finland", "Ireland", "Germany"],
-  GKE: ["Finland", "Sweden", "Denmark", "Germany"],
-  Azure: ["Sweden", "Germany", "France"],
+  AWS: ["Finland", "Sweden", "Denmark"],
+  GKE: ["Finland", "Sweden", "Denmark"],
+  Azure: ["Finland", "Sweden", "Denmark"],
 };
 
 function validateCIDR(cidr: string) {
@@ -15,9 +16,16 @@ export default function Step2Connect({
   onContinue,
   onBack,
 }: {
-  onContinue: (config: any) => void;
+  onContinue: () => void;
   onBack: () => void;
 }) {
+  const {
+    setCloudProvider,
+    setRegion,
+    setClusterName,
+    setDrRegion,
+  } = useWizard(); // ✅ NEW
+
   const [form, setForm] = useState({
     provider: "",
     region: "",
@@ -57,7 +65,15 @@ export default function Step2Connect({
     if (!allRequiredFieldsFilled()) return;
 
     setConnected(true);
-    setBanner("✅ Cloud link & VPC saved. Config is now read-only.");
+    setBanner("Cloud link & VPC saved. Config is now read-only.");
+
+    // ✅ Sync selected fields to wizard state
+    setCloudProvider(form.provider);
+    setRegion(form.region);
+    setClusterName(form.clusterName);
+    if (form.enableDR) {
+      setDrRegion(form.drRegion);
+    }
   };
 
   const isValid = connected;
@@ -172,7 +188,7 @@ export default function Step2Connect({
               value={form.accessKey}
               onChange={(e) => handleChange("accessKey", e.target.value)}
             />
-            <p className="text-[12px] text-[#888] mt-[4px]">🔒 Stored securely (demo only)</p>
+            <p className="text-[12px] text-[#888] mt-[4px]"> Stored securely (demo only)</p>
           </div>
 
           {/* Secret Key */}
@@ -235,7 +251,7 @@ export default function Step2Connect({
                   onChange={(e) => handleChange("drRegion", e.target.value)}
                 >
                   <option value="">Select DR Region</option>
-                  {["Germany", "Finland", "Sweden"].map((r) => (
+                  {["Denmark", "Finland", "Sweden"].map((r) => (
                     <option key={r}>{r}</option>
                   ))}
                 </select>
@@ -263,7 +279,7 @@ export default function Step2Connect({
 
             <button
               disabled={!isValid}
-              onClick={() => onContinue(form)}
+              onClick={onContinue}
               className={`text-[14px] px-[20px] py-[10px] rounded-[6px] transition ${
                 isValid
                   ? "btn btn-primary"

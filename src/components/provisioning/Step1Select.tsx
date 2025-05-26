@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CheckCircle, HelpCircle } from "lucide-react";
+import { Check, HelpCircle } from "lucide-react";
+import { useWizard } from "./WizardContext"; 
 
 const apps = [
   {
@@ -48,18 +49,24 @@ const apps = [
 
 const categories = ["core", "security", "observability"];
 
-export default function Step1Select({ onContinue }: { onContinue: (selected: string[]) => void }) {
-  const [selected, setSelected] = useState<string[]>([]);
+export default function Step1Select({ onContinue }: { onContinue: () => void }) {
+  const { selectedApps, setSelectedApps } = useWizard(); // NEW
+  const [localSelected, setLocalSelected] = useState<string[]>(selectedApps); // for intermediate selection
 
   const toggleSelection = (id: string) => {
-    setSelected((prev) =>
+    setLocalSelected((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
 
   const isValid = () => {
-    const cats = new Set(apps.filter((a) => selected.includes(a.id)).map((a) => a.category));
+    const cats = new Set(apps.filter((a) => localSelected.includes(a.id)).map((a) => a.category));
     return categories.every((c) => cats.has(c));
+  };
+
+  const handleContinue = () => {
+    setSelectedApps(localSelected); // Save to global state
+    onContinue(); // Move to next step
   };
 
   return (
@@ -98,7 +105,7 @@ export default function Step1Select({ onContinue }: { onContinue: (selected: str
               {apps
                 .filter((a) => a.category === cat)
                 .map((app) => {
-                  const selectedCard = selected.includes(app.id);
+                  const selectedCard = localSelected.includes(app.id);
                   return (
                     <div
                       key={app.id}
@@ -110,7 +117,7 @@ export default function Step1Select({ onContinue }: { onContinue: (selected: str
                       }`}
                     >
                       {selectedCard && (
-                        <CheckCircle className="absolute top-[8px] left-[8px] text-[#4CAF50]" size={20} />
+                        <Check className="absolute top-[8px] left-[8px] text-[#4CAF50]" size={20} />
                       )}
                       <div className="flex justify-between items-start">
                         <h3 className="text-[16px] font-bold">{app.name}</h3>
@@ -131,7 +138,7 @@ export default function Step1Select({ onContinue }: { onContinue: (selected: str
           <button className="text-[#757575] text-[14px] bg-transparent border-none"></button>
           <button
             disabled={!isValid()}
-            onClick={() => onContinue(selected)}
+            onClick={handleContinue}
             className={`text-[14px] px-[20px] py-[10px] rounded-[6px] transition-all ${
               isValid()
                 ? "btn btn-primary"
