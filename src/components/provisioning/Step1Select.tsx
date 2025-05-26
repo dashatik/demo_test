@@ -24,11 +24,11 @@ const apps = [
     tooltip: "Vault ensures secure handling of access credentials.",
   },
   {
-    id: "wireguard",
-    name: "WireGuard VPN",
+    id: "vpn",
+    name: "Transtar VPN",
     description: "Fast encrypted tunnel for inter-region pod traffic",
     category: "security",
-    tooltip: "WireGuard secures pod-to-pod traffic across regions.",
+    tooltip: "Transtar VPN secures pod-to-pod traffic across regions.",
   },
   {
     id: "prometheus",
