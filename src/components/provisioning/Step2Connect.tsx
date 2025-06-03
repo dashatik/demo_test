@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWizard } from "./WizardContext"; // ✅ NEW
+//import { X } from "lucide-react"; 
 
 const providers = ["AWS", "GKE", "Azure"];
 const regions = {
@@ -85,7 +86,7 @@ export default function Step2Connect({
         {["Select", "Connect", "Deploy", "Manage"].map((step, index) => (
           <div key={step} className="flex flex-col items-center">
             <div
-              className={`w-[24px] h-[24px] rounded-full flex items-center justify-center border text-white ${
+              className={`w-[24px] h-[24px] rounded-full flex items-center justify-center border text-[#fff] ${
                 index === 1
                   ? "bg-[#424242] text-[#fff]"
                   : index < 1
@@ -101,7 +102,7 @@ export default function Step2Connect({
       </div>
 
       {/* Form Box */}
-      <div className="bg-[#F9FAFC] w-[880px] min-h-full rounded-[12px] shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-[32px]">
+      <div className="bg-[#F9FAFC] w-full max-w-[700px] min-h-full rounded-[12px] shadow-[0_8px_24px_rgba(0,0,0,0.08)] p-[32px]">
         <h2 className="text-[18px] font-semibold mb-[24px]">Connect Cloud Infrastructure</h2>
 
         {banner && (
@@ -110,10 +111,10 @@ export default function Step2Connect({
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-[24px] text-[14px]">
+        <div className="grid grid-cols-2 gap-[30px] text-[14px]">
           {/* Provider */}
           <div>
-            <label className="block mb-[6px] font-medium">Cloud Provider*</label>
+            <label className="appearance-none block mb-[6px] font-medium">Cloud Provider*</label>
             <select
               disabled={connected}
               className="w-full border border-[#CCC] p-[10px] rounded-[6px]"
@@ -129,7 +130,7 @@ export default function Step2Connect({
 
           {/* Region */}
           <div>
-            <label className="block mb-[6px] font-medium">Region*</label>
+            <label className="appearance-none block mb-[6px] font-medium">Region*</label>
             <select
               disabled={connected || !form.provider}
               className="w-full border border-[#CCC] p-[10px] rounded-[6px]"
@@ -146,12 +147,12 @@ export default function Step2Connect({
 
           {/* VPC */}
           <div>
-            <label className="block mb-[6px] font-medium">VPC ID</label>
+            <label className=" block mb-[6px] font-medium">VPC ID</label>
             <input
               type="text"
               placeholder="vpc-273a1df"
               disabled={connected}
-              className="w-full border border-[#CCC] p-[10px] rounded-[6px]"
+              className=" w-full border border-[#CCC] p-[10px] rounded-[6px]"
               value={form.vpc}
               onChange={(e) => handleChange("vpc", e.target.value)}
             />
@@ -159,7 +160,7 @@ export default function Step2Connect({
 
           {/* CIDR */}
           <div>
-            <label className="block mb-[6px] font-medium">CIDR Block</label>
+            <label className=" block mb-[6px] font-medium">CIDR Block</label>
             <input
               type="text"
               placeholder="10.0.0.0/16"
@@ -286,7 +287,7 @@ export default function Step2Connect({
                   : "btn btn-disabled cursor-not-allowed"
               }`}
             >
-              Continue
+              Continue to Deploy
             </button>
           </div>
         </div>
