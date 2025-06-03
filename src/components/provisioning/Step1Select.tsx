@@ -85,7 +85,7 @@ export default function Step1Select({ onContinue }: { onContinue: (selected: str
       id: "dora",
       label: "DORA Article 11.3.b",
       description: "Only DR-tagged services are deployable",
-      required: ["vpn"],
+      required: ["vpn", "postgres", "loki", "prometheus"],
       tooltip: "VPN selected. DR tag enforcement missing. Add DR-enabled service or enable policy flag."
     },
     {
@@ -99,14 +99,14 @@ export default function Step1Select({ onContinue }: { onContinue: (selected: str
       id: "pci",
       label: "PCI DSS 10.3",
       description: "All actions logged in immutable trail",
-      required: ["loki"],
+      required: ["vault", "loki", "prometheus", "postgres"],
       tooltip: "Loki not selected. Immutable audit logs required for PCI DSS compliance."
     },
     {
       id: "nis2",
       label: "NIS2 Article 21.2.c",
       description: "Live system monitoring and immutable audit logging",
-      required: ["prometheus", "loki"],
+      required: ["vault", "vpn", "prometheus", "loki"],
       tooltip: "Prometheus selected. Loki missing — full NIS2 observability not satisfied."
     },
   ];
